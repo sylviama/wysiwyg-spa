@@ -1,0 +1,18 @@
+article {
+	margin: 10px;
+}
+
+/*For every even numbered element, have a light yellow background.*/
+
+div:nth-child(even){
+ background-color: lightyellow;
+}
+
+/*For every odd numbered element, have a light blue background.*/
+div:nth-child(odd){
+ background-color: lightblue;
+}
+
+.dotted {
+	border: dotted;
+}
