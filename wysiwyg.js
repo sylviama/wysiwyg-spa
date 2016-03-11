@@ -89,13 +89,12 @@ function typeFunction(){
 	function keyFunction(){
 	selected.innerHTML = document.getElementById("input").value;
 	}
+
+	//clear text input function
+	document.getElementById("btn").addEventListener("click", clearInput);
+	
+	function clearInput(){
+	document.getElementById("input").value = "";
+	selected ="";
+	}
 }
-
-//clear text input function
-document.getElementById("btn").addEventListener("click", clearInput);
-
-function clearInput(){
-document.getElementById("input").value = "";
-console.log("call the clear input function");
-}
-
