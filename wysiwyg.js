@@ -1,9 +1,3 @@
-
-// When you click on one of the person elements, the text input should immediately gain focus so that you can start typing.
-// When there is a highlighted person element, and you begin typing in the input box, the person's biography should be immediately bound to what you are typing, letter by letter.
-// When you press the enter/return key when typing in the input field, then the content of the input field should immediately be blank.
-
-
 // Create an array of objects that represents famous people (see structure below).
 var people=[
 	{
@@ -38,6 +32,7 @@ var people=[
 	    death: 1865
 	  }
 	}]
+
 //loop through into HTML
 var string="";
 for(var i=0;i<people.length;i++){
@@ -47,17 +42,60 @@ for(var i=0;i<people.length;i++){
 document.getElementById("container").innerHTML = string;
 
 // When you click on one of the person elements, a dotted border should appear around it.
-document.getElementsById("container").addEventListener("click",);
-for(i=0;i<el9.length;i++){
-el9[i].addEventListener("click", focus);
-	function focus(){
-		this.style.border="thick dotted red";
-		console.log(this);
+document.getElementById("container").addEventListener("click", dotFunction);
+
+function dotFunction(){
+	clear();
+	event.target.classList.add("dotted");
+	event.target.classList.remove("undotted");
+}
+
+//Clear all the previous dotted tags
+function clear(){
+	//remove dots for <article>
+	document.querySelector("article").classList.add("undotted");
+	document.querySelector("article").classList.remove("dotted");
+
+	//remove dots for <div>s
+	var divEle = document.getElementsByTagName("div");
+	for(var i=0;i<divEle.length;i++){
+	divEle[i].classList.add("undotted");
+	divEle[i].classList.remove("dotted");
+	}
+
+	//remove dots for all the children of <div>s
+	for(var i=0; i<divEle.length; i++){
+		var divChiEle= divEle[i].children;
+		for(var j=0; j<divChiEle.length; j++){
+		divChiEle[j].classList.add("undotted");
+		divChiEle[j].classList.remove("dotted");
+		}
 	}
 }
 
+// When you click on one of the person elements, the text input should immediately gain focus so that you can start typing.
+// When there is a highlighted person element, and you begin typing in the input box, the person's biography should be immediately bound to what you are typing, letter by letter.
+// When you press the enter/return key when typing in the input field, then the content of the input field should immediately be blank.
+document.getElementById("container").addEventListener("click", typeFunction);
 
+function typeFunction(){
+	//Gain focus to text input 
+	document.getElementById("input").focus();
 
+	//Type and Key up
+	document.getElementById("input").addEventListener("keyup", keyFunction);	
+	var selected = event.target;
 
+	function keyFunction(){
+	selected.innerHTML = document.getElementById("input").value;
+	}
+}
 
+//clear text input function
+document.getElementById("btn").addEventListener("click", clearInput);
+
+function clearInput(){
+document.getElementById("input").value = "";
+console.log("call the clear input function");
+}
 
